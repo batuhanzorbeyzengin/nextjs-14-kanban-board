@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  nextjs-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nextjs-app
+    ports:
+      - '3000:3000'
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=mysql://root:root@db:3306/kanban_board
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+  db:
+    image: mysql:8.0
+    container_name: mysql-db
+    ports:
+      - '8889:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: kanban_board
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - app-network
+
+volumes:
+  db-data:
+
+networks:
+  app-network:

@@ -1,0 +1,115 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+/// The User model represents a user in the application.
+/// Each user has a unique ID and email, and is associated with multiple boards and sessions.
+/// - `id`: A unique identifier for the user, generated as a UUID.
+/// - `email`: A unique email address for the user.
+/// - `boards`: A list of boards created by the user.
+/// - `sessions`: A list of sessions associated with the user.
+/// - `createdAt`: The timestamp when the user was created.
+/// - `updatedAt`: The timestamp when the user was last updated.
+model User {
+  id        String    @id @default(uuid())
+  email     String    @unique
+  boards    Board[]
+  sessions  Session[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+/// The Board model represents a board created by a user.
+/// Each board has a unique ID, a name, and is associated with multiple sections.
+/// - `id`: A unique identifier for the board, generated as a UUID.
+/// - `name`: The name of the board.
+/// - `userId`: The ID of the user who created the board.
+/// - `user`: The user who created the board.
+/// - `cards`: A list of cards in the board.
+/// - `createdAt`: The timestamp when the board was created.
+/// - `updatedAt`: The timestamp when the board was last updated.
+/// - `deletedAt`: The timestamp when the board was soft deleted.
+model Board {
+  id        String    @id @default(uuid())
+  name      String    @unique
+  userId    String
+  user      User      @relation(fields: [userId], references: [id])
+  cards     Card[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+}
+
+/// The Section model represents a section.
+/// Each section has a unique ID, a name, and is associated with multiple cards.
+/// - `id`: A unique identifier for the section, generated as a UUID.
+/// - `name`: The name of the section.
+/// - `order`: The order of the section within the board.
+/// - `cards`: A list of cards in the section.
+/// - `createdAt`: The timestamp when the section was created.
+/// - `updatedAt`: The timestamp when the section was last updated.
+/// - `deletedAt`: The timestamp when the section was soft deleted.
+model Section {
+  id        String    @id @default(uuid())
+  name      String    @unique
+  order     Int
+  cards     Card[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+}
+
+/// The Card model represents a card within a section and board.
+/// Each card has a unique ID, a title, a color, an order, and is associated with a section and board.
+/// - `id`: A unique identifier for the card, generated as a UUID.
+/// - `title`: The title of the card.
+/// - `color`: The color of the card.
+/// - `order`: The order of the card within the section.
+/// - `sectionId`: The ID of the section that the card belongs to.
+/// - `section`: The section that the card belongs to.
+/// - `boardId`: The ID of the board that the card belongs to.
+/// - `board`: The board that the card belongs to.
+/// - `createdAt`: The timestamp when the card was created.
+/// - `updatedAt`: The timestamp when the card was last updated.
+/// - `deletedAt`: The timestamp when the card was soft deleted.
+/// - `@@index`: An index on the `sectionId` and `order` fields to improve query performance.
+model Card {
+  id        String    @id @default(uuid())
+  title     String
+  color     String
+  order     Int
+  sectionId String
+  section   Section   @relation(fields: [sectionId], references: [id])
+  boardId   String
+  board     Board     @relation(fields: [boardId], references: [id])
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  @@index([sectionId, order], name: "index_card_order")
+}
+
+/// The Session model represents a session for a user.
+/// Each session has a unique ID, a user ID, a token, and expiration date.
+/// - `id`: A unique identifier for the session, generated as a UUID.
+/// - `userId`: The ID of the user that the session belongs to.
+/// - `user`: The user that the session belongs to.
+/// - `token`: The token for the session, stored as a VARCHAR with a maximum length of 512 characters.
+/// - `createdAt`: The timestamp when the session was created.
+/// - `expiresAt`: The timestamp when the session expires.
+/// - `@@index`: An index on the `userId` field to improve query performance.
+model Session {
+  id        String    @id @default(uuid())
+  userId    String
+  user      User      @relation(fields: [userId], references: [id])
+  token     String    @db.VarChar(512)
+  createdAt DateTime  @default(now())
+  expiresAt DateTime
+
+  @@index([userId], name: "index_user_session")
+}
