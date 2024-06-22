@@ -1,0 +1,597 @@
+{
+	"info": {
+		"_postman_id": "f67ecde2-98dc-489a-963b-289cb2d2d568",
+		"name": "Kanban Board API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32773683"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"batuhan@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "201",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"batuhan@gmail.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/auth/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI5ODIzNWExNi1mODI2LTRlOTMtOWE5ZS02NmQ4NzZjMjMwNjIiLCJlbWFpbCI6ImJhdHVoYW5AZ21haWwuY29tIiwiaWF0IjoxNzE5MDg4MjUzLCJleHAiOjE3MTkxNzQ2NTN9.YGAcWwXbHY8VJpY6kYkGorZR4LsE4x3hPnIPeCA20uk\"\n}"
+						},
+						{
+							"name": "404",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"batuhan@gmail.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/auth/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"error\": \"User with this email does not exist\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"batuhann@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "201",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"batuhan@gmail.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/auth/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"message\": \"User created successfully\"\n}"
+						},
+						{
+							"name": "400",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"batuhann@gmail.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/auth/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"error\": \"User with this email already exists\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/api/v1/auth/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Boards",
+			"item": [
+				{
+					"name": "All List Board",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI5ODIzNWExNi1mODI2LTRlOTMtOWE5ZS02NmQ4NzZjMjMwNjIiLCJlbWFpbCI6ImJhdHVoYW5AZ21haWwuY29tIiwiaWF0IjoxNzE5MDg4NTk1LCJleHAiOjE3MTkxNzQ5OTV9.DgHhQuL6UBkcs7lRK2yy0G59eWEZHy3OjLQ1tR42qII",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/boards",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"boards"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bear <TOKEN>"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/boards",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"boards"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"49b92aaa-635b-48cd-80ca-3660eb913a59\",\n        \"name\": \"test board 3\",\n        \"createdAt\": \"2024-06-12T18:14:01.119Z\"\n    },\n    {\n        \"id\": \"519f93b9-4976-44ae-9d8f-e33396f1a661\",\n        \"name\": \"New Board 1\",\n        \"createdAt\": \"2024-06-11T09:36:28.546Z\"\n    },\n    {\n        \"id\": \"7d17df2b-0188-42f5-9aed-518e9424669b\",\n        \"name\": \"test board 2\",\n        \"createdAt\": \"2024-06-12T16:25:00.361Z\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Add Board",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI5ODIzNWExNi1mODI2LTRlOTMtOWE5ZS02NmQ4NzZjMjMwNjIiLCJlbWFpbCI6ImJhdHVoYW5AZ21haWwuY29tIiwiaWF0IjoxNzE4MDk4NTI2LCJleHAiOjE3MTgxODQ5MjZ9.XXthaSNdzEk2-apQe4Bp5TgdLTlNIREpvuriWIjj6YQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"New Board 1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/boards",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"boards"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cards",
+			"item": [
+				{
+					"name": "Create Card",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI5ODIzNWExNi1mODI2LTRlOTMtOWE5ZS02NmQ4NzZjMjMwNjIiLCJlbWFpbCI6ImJhdHVoYW5AZ21haWwuY29tIiwiaWF0IjoxNzE4MDk4NTI2LCJleHAiOjE3MTgxODQ5MjZ9.XXthaSNdzEk2-apQe4Bp5TgdLTlNIREpvuriWIjj6YQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"test card4\",\n    \"color\": \"#0032123\",\n    \"boardId\": \"519f93b9-4976-44ae-9d8f-e33396f1a661\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/card",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"card"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "201",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"test card2\",\n    \"color\": \"#003234\",\n    \"boardId\": \"519f93b9-4976-44ae-9d8f-e33396f1a661\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/card",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"card"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"id\": \"5c6f7da5-9f65-4d1c-a248-c7d4fdcfa61b\",\n    \"title\": \"test card4\",\n    \"color\": \"#0032123\",\n    \"order\": 2,\n    \"sectionId\": \"b97359d3-09f2-45ce-8113-ea8abb6d7f2e\",\n    \"boardId\": \"519f93b9-4976-44ae-9d8f-e33396f1a661\",\n    \"createdAt\": \"2024-06-11T13:06:20.557Z\",\n    \"updatedAt\": \"2024-06-11T13:06:20.557Z\",\n    \"deletedAt\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Cards List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/card?boardId=519f93b9-4976-44ae-9d8f-e33396f1a661",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"card"
+							],
+							"query": [
+								{
+									"key": "boardId",
+									"value": "519f93b9-4976-44ae-9d8f-e33396f1a661"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/card?boardId=519f93b9-4976-44ae-9d8f-e33396f1a661",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"card"
+									],
+									"query": [
+										{
+											"key": "boardId",
+											"value": "519f93b9-4976-44ae-9d8f-e33396f1a661"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"599b0f53-98f8-4a01-b4c6-6b0731a0d505\",\n        \"title\": \"test card2\",\n        \"color\": \"#003234\",\n        \"order\": 1,\n        \"section\": {\n            \"id\": \"0fe69951-2762-46db-9208-40dd5cff5d53\",\n            \"name\": \"To Do\",\n            \"order\": 2\n        }\n    },\n    {\n        \"id\": \"5c6f7da5-9f65-4d1c-a248-c7d4fdcfa61b\",\n        \"title\": \"test card4\",\n        \"color\": \"#0032123\",\n        \"order\": 1,\n        \"section\": {\n            \"id\": \"ae97c9a4-506f-4a2a-90c7-ccbb7151d805\",\n            \"name\": \"Done\",\n            \"order\": 4\n        }\n    },\n    {\n        \"id\": \"fcbcaf3c-5ee3-4577-a5a4-e26b8d3c2574\",\n        \"title\": \"test card1\",\n        \"color\": \"#003400\",\n        \"order\": 1,\n        \"section\": {\n            \"id\": \"e12d0d8a-b9ac-4072-8215-6e102d83aa73\",\n            \"name\": \"In Progress\",\n            \"order\": 3\n        }\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Card Order Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI5ODIzNWExNi1mODI2LTRlOTMtOWE5ZS02NmQ4NzZjMjMwNjIiLCJlbWFpbCI6ImJhdHVoYW5AZ21haWwuY29tIiwiaWF0IjoxNzE4MDk4NTI2LCJleHAiOjE3MTgxODQ5MjZ9.XXthaSNdzEk2-apQe4Bp5TgdLTlNIREpvuriWIjj6YQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"sectionId\": \"b97359d3-09f2-45ce-8113-ea8abb6d7f2e\",\n  \"cards\": [\n    { \"id\": \"fcbcaf3c-5ee3-4577-a5a4-e26b8d3c2574\", \"order\": 2 },\n    { \"id\": \"599b0f53-98f8-4a01-b4c6-6b0731a0d505\", \"order\": 1 }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/card/order",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"card",
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Card Section Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI5ODIzNWExNi1mODI2LTRlOTMtOWE5ZS02NmQ4NzZjMjMwNjIiLCJlbWFpbCI6ImJhdHVoYW5AZ21haWwuY29tIiwiaWF0IjoxNzE4MDk4NTI2LCJleHAiOjE3MTgxODQ5MjZ9.XXthaSNdzEk2-apQe4Bp5TgdLTlNIREpvuriWIjj6YQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"cardId\": \"599b0f53-98f8-4a01-b4c6-6b0731a0d505\",\n  \"newSectionId\": \"e12d0d8a-b9ac-4072-8215-6e102d83aa73\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/card/section",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"card",
+								"section"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Section List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/section",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"section"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
